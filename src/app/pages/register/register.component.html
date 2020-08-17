@@ -1,0 +1,76 @@
+<div class="col-lg-12 p-0 h-100 bg">
+  <div class="col-lg-12 p-5">
+    <div class="col-lg-6 m-auto mt-5 p-4">
+      <form [formGroup]="registerForm" aria-autocomplete="none" autocomplete="off">
+        <div class="col-lg-12 py-3 px-4 reg-bg ">
+          <h1 class="text-center">Register</h1>
+          <p class="text-center mb-0">
+            <img
+              src="https://i.graphicmama.com/blog/wp-content/uploads/2019/10/02145410/logo-design-trends-2020-colorful-gradient-logos-example-1.gif"
+              alt="logo" class="p-2" width="200px">
+          </p>
+
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-lg-6">
+                <mat-form-field class="col-lg-12">
+                  <input type="text" matInput id="firstName" formControlName="firstName" name="firstName"
+                    placeholder="FirstName">
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6">
+                <mat-form-field class="col-lg-12">
+                  <input type="text" matInput id="lastName" formControlName="lastName" name="lastName"
+                    placeholder="LastName">
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-lg-6">
+                <mat-form-field class="col-lg-12">
+                  <input type="email" matInput id="emailId" formControlName="emailId" name="emailId"
+                    placeholder="Email Id">
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6">
+                <mat-form-field class="col-lg-12">
+                  <input [type]="hide ? 'password' : 'text'" matInput id="password" formControlName="password"
+                    name="password" placeholder="Password">
+                  <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-lg-6">
+                <mat-form-field class="col-lg-12">
+                  <mat-select formControlName="designation" name="designation" placeholder="Designation">
+                    <mat-option *ngFor="let designation of designationList;let i=index" id="desgination{{i}}" [value]="designation">
+                      {{designation}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6">
+                <mat-form-field class="col-lg-12">
+                  <input type="number" matInput id="phoneNumber" formControlName="phoneNumber" name="phoneNumber"
+                    placeholder="Phone Number">
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <p class="text-right">
+            <a routerLink="login">Click here to signin</a>
+          </p>
+          <div class="text-center col-12 pb-2">
+            <button color="primary" class="btn btn-primary" type="submit" (click)="register()">Register</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

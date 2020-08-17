@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+
+.btn-primary {
+  color: #fff;
+  background-color: #20a8d8;
+  border-color: #20a8d8;
+  border-radius: 10px 17px;
+  min-width: 100px !important;
+  padding: 0.5rem 0.75rem !important;
+  font-size: 0.9rem !important;
+}
+
+.form-bg {
+  background-color: white;
+  border-radius: 10px 15px;
+  box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  width: 30em;
+  margin-top: -9em;
+  margin-left: -15em;
+  border-top: 5px solid #43c8f8;
+}
