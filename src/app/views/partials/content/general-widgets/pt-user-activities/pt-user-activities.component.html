@@ -1,0 +1,139 @@
+<div class="card card-custom" [ngClass]="cssClasses">
+  <!-- Header -->
+  <div class="card-header border-0">
+    <h3 class="card-title font-weight-bolder text-primary">Actions</h3>
+    <div class="card-toolbar">
+      <div >
+        <a  class="btn btn-light btn-sm font-size-sm font-weight-bolder dropdown-toggle text-dark-75"
+         (click)="openNewAction(createAction)">
+          Create
+        </a>
+
+      </div>
+    </div>
+  </div>
+  <!-- Body -->
+  <div class="card-body pt-2">
+    <!--begin::Item-->
+    <div class="d-flex align-items-center mb-10" *ngFor="let item of activityList">
+      <!--begin::Bullet-->
+      <span class="bullet bullet-bar  align-self-stretch" [ngClass]="{'bg-success' : item.actionStatus != 'Closed','bg-dark' : item.actionStatus == 'Closed'}"></span>
+      <!--end::Bullet-->
+      <!--begin::Checkbox-->
+      <label class="checkbox checkbox-lg  checkbox-single flex-shrink-0 m-0 mx-4" [ngClass]="{'checkbox-light-success' : item.actionStatus != 'Closed','checkbox-light-dark' : item.actionStatus == 'Closed'}">
+        <input type="checkbox" name="" value="1" />
+        <span></span>
+      </label>
+      <!--end::Checkbox-->
+      <!--begin::Text-->
+      <div class="d-flex flex-column flex-grow-1">
+
+        <div class="text-dark-75  font-weight-bold font-size-lg mb-1">
+          {{item.actionDescription}}               <span class="label label-xl label-inline float-right " [ngClass]="{'label-light-dark' : item.actionStatus == 'Closed','label-light-primary' : item.actionStatus == 'Open'}"> {{item.actionStatus}} </span>
+        </div>
+
+        <div>
+          <span class="text-muted font-weight-bold">
+            {{item.createdAtString}}
+          </span>
+          <span *ngIf="item.updatedAt" class="text-muted  float-right">
+            {{item.updatedAtString}}
+          </span>
+        </div>
+      </div>
+      <!--end::Text-->
+
+      <a (click)="open(confirmationDeleteAction,item)" class="btn btn-icon btn-light btn-sm mx-3 ml-2">
+        <span [inlineSVG]="'./assets/media/svg/icons/Communication/Write.svg'"
+              class="svg-icon svg-icon-md svg-icon-primary"></span>
+      </a>
+      <a *ngIf="!item.isdeleted" (click)="open(confirmationDeleteAction,item)" class="btn btn-icon btn-light btn-sm ">
+        <span [inlineSVG]="'./assets/media/svg/icons/General/Trash.svg'"
+              class="svg-icon svg-icon-md svg-icon-primary"></span>
+      </a>
+    </div>
+    <!--end:Item-->
+
+  </div>
+</div>
+
+
+<ng-template #confirmationDeleteAction let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Confirmation</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>
+        You are about to delete and action. Are you sure?
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    <button type="button" class="btn btn-primary" (click)="deleteAction(confirmationDeleteAction)">Confirm</button>
+  </div>
+</ng-template>
+
+
+<ng-template #createAction let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Action</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="m-3">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <mat-form-field>
+              <mat-select placeholder="Select Goal" required name="dob" [(ngModel)]="newAction.userGoal">
+                <mat-option>Please Select</mat-option>
+                <mat-option *ngFor="let item of goalList" [value]="item">
+                  {{item}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker" placeholder="Performed On" name="createdAt" [(ngModel)]="newAction.createdAt">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <mat-form-field>
+              <mat-label>Action</mat-label>
+              <input style="width:100%" matInput placeholder="0 lbs" name="phoneNo" [(ngModel)]="newAction.actionDescription" autocomplete="off">
+            </mat-form-field>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button id="pt_save_user_profile" (click)="createNewAction(createAction)" [ngClass]="{
+            'spinner spinner-right spinner-md spinner-light': loading
+          }" class="btn btn-danger font-weight-bold px-9 py-4 my-3">
+      Create!
+    </button>
+  </div>
+</ng-template>

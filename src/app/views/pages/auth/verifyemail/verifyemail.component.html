@@ -1,0 +1,144 @@
+<div class="d-flex flex-column-fluid flex-center mt-30 mt-lg-0">
+  <!--begin::Signup-->
+  <div class="login-form login-signup" style="display: block;">
+    <div class="text-center mb-10 mb-lg-20">
+      <h3 class="font-size-h1">Welcome to Prognostyx!</h3>
+      <p class="text-muted font-weight-bold">Please proceed with our sign up process...</p>
+    </div>
+
+    <kt-auth-notice></kt-auth-notice>
+
+    <mat-horizontal-stepper #stepper>
+      <mat-step [editable]="false">
+        <ng-template matStepLabel>Email Verification</ng-template>
+        <form class="form" [formGroup]="emailForm" autocomplete="off" *ngIf="!showVerifyCode">
+          <div class="row">
+
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <mat-form-field>
+                  <mat-label>Last Name</mat-label>
+                  <input matInput type="text" placeholder="Last Name" formControlName="lastName" />
+                  <mat-error *ngIf="isControlHasErrorEmail('lastName','required')">
+                    <strong>{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}</strong>
+                  </mat-error>
+                  <mat-error *ngIf="isControlHasErrorEmail('lastName','minlength')">
+                    <strong>{{ 'AUTH.VALIDATION.MIN_LENGTH_FIELD' | translate }} 3</strong>
+                  </mat-error>
+                  <mat-error *ngIf="isControlHasErrorEmail('lastName','maxlength')">
+                    <strong>{{ 'AUTH.VALIDATION.MAX_LENGTH_FIELD' | translate }} 100</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+
+
+
+          </div>
+
+          <div class="row">
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <mat-form-field>
+                  <mat-label>{{ 'AUTH.INPUT.EMAIL' | translate }}</mat-label>
+                  <input matInput type="email" placeholder="{{ 'AUTH.INPUT.EMAIL' | translate }}"
+                         formControlName="email" autocomplete="off" />
+                  <mat-error *ngIf="isControlHasErrorEmail('email','required')">
+                    <strong>{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}</strong>
+                  </mat-error>
+                  <mat-error *ngIf="isControlHasErrorEmail('email','email')">
+                    <strong>{{ 'AUTH.VALIDATION.INVALID_FIELD' | translate }}</strong>
+                  </mat-error>
+                  <mat-error *ngIf="isControlHasErrorEmail('email','minlength')">
+                    <strong>{{ 'AUTH.VALIDATION.MIN_LENGTH_FIELD' | translate }} 3</strong>
+                  </mat-error>
+                  <mat-error *ngIf="isControlHasErrorEmail('email','maxlength')">
+                    <strong>{{ 'AUTH.VALIDATION.MAX_LENGTH_FIELD' | translate }} 320</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+
+          </div>
+
+
+          <!--begin::Action-->
+          <div class="form-group d-flex flex-wrap flex-left">
+            <button (click)="requestVerificationCode(stepper)" id="kt_login_signup_submit1"
+                    class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-4"
+                    [ngClass]="{'spinner spinner-right spinner-md spinner-light': loading}">
+              {{ 'AUTH.GENERAL.SUBMIT_BUTTON' | translate }}
+            </button>
+            <a href="/auth/login" id="kt_login_signup_cancel"
+               class="btn btn-light-primary font-weight-bold px-9 py-4 my-3 mx-4">Cancel</a>
+          </div>
+          <!--end::Action-->
+        </form>
+
+      </mat-step>
+      <mat-step [editable]="false">
+        <ng-template matStepLabel>Enter Code</ng-template>
+        <form class="form" [formGroup]="verificationForm" autocomplete="off" *ngIf="showVerifyCode">
+          <div class="row">
+
+
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <mat-form-field>
+                  <mat-label>Verification Code</mat-label>
+                  <input matInput type="text" placeholder="------" formControlName="verificationCode" />
+                  <mat-error *ngIf="isControlHasErrorVerify('verificationCode','required')">
+                    <strong>{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}</strong>
+                  </mat-error>
+                  <mat-error *ngIf="isControlHasErrorVerify('verificationCode','minlength')">
+                    <strong>{{ 'AUTH.VALIDATION.MIN_LENGTH_FIELD' | translate }}6</strong>
+                  </mat-error>
+                  <mat-error *ngIf="isControlHasErrorVerify('verificationCode','maxlength')">
+                    <strong>{{ 'AUTH.VALIDATION.MAX_LENGTH_FIELD' | translate }} 6</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+
+
+          </div>
+
+          <!--begin::Action-->
+          <div class="form-group d-flex flex-wrap flex-left">
+            <button (click)="verifyCode(stepper)" id="kt_login_signup_submit"
+                    class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-4"
+                    [ngClass]="{'spinner spinner-right spinner-md spinner-light': loading}">
+              Verify
+            </button>
+            <a href="/auth/login" id="kt_login_signup_cancel"
+               class="btn btn-light-primary font-weight-bold px-9 py-4 my-3 mx-4">Resend</a>
+          </div>
+          <!--end::Action-->
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Make Payment</ng-template>
+        <p>You will be directed to our payment gateway</p>
+        <div>
+
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Login</ng-template>
+        <p>You are now done.</p>
+        <div>
+
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+
+
+
+
+
+  </div>
+  <!--end::Signup-->
+</div>

@@ -1,0 +1,141 @@
+
+
+  <div class="row  ">
+
+    <div class="col-xl-5 user-profile-form ">
+      <div class="row p-4">
+        <div class="col-md-12 header-icon-1">
+          <span><img src="./assets/img/heart.png" class="animate__animated animate__pulse animate__infinite">  <span class="card-title font-weight-bolder text-primary table-title ml-3 mb-2">Health Profile</span> </span>
+          <mat-divider class="ml-2 mr-2 mt-3"></mat-divider>
+        </div>
+      </div>
+      <div class="row  p-4">
+        <div class="col-md-12">
+          <form class="m-3">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <mat-form-field>
+                    <mat-select placeholder="Gender" required name="dob" [(ngModel)]="profileDetails.gender">
+                      <mat-option>Please Select</mat-option>
+                      <mat-option *ngFor="let gender of genderList" [value]="gender">
+                        {{gender}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <mat-form-field>
+                    <input matInput [matDatepicker]="picker" placeholder="Date of Birth" name="dob" [(ngModel)]="profileDetails.DOB">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <mat-form-field>
+                    <mat-label>Body Weight</mat-label>
+                    <input matInput placeholder="0 lbs" name="phoneNo" [(ngModel)]="profileDetails.healthProfile.weight" autocomplete="off">
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <mat-form-field>
+                    <mat-label>Height</mat-label>
+                    <input matInput placeholder="inches" name="height" [(ngModel)]="profileDetails.healthProfile.height" autocomplete="off">
+                  </mat-form-field>
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="form-group d-flex flex-wrap justify-content-between align-items-center">
+              <button id="pt_save_user_profile" (click)="submit('HEALTH')" [ngClass]="{
+            'spinner spinner-right spinner-md spinner-light': loading
+          }" class="btn btn-danger font-weight-bold px-9 py-4 my-3">
+                Save
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-1 ">
+      </div>
+      <div class="col-xl-5 user-profile-form ">
+        <div class="row p-4">
+          <div class="col-md-12 header-icon-1">
+            <span><img src="./assets/img/drug.png" class="animate__animated animate__bounce animate__repeat-3">  <span class="card-title font-weight-bolder text-primary table-title ml-3 mb-2">Current Condition</span> </span>
+            <mat-divider class="ml-2 mr-2 mt-3"></mat-divider>
+          </div>
+        </div>
+        <div class="row  p-4">
+          <div class="col-md-12">
+            <form class="m-3">
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <mat-slide-toggle labelPosition="before" name="currentHealth" [checked]="profileDetails.healthProfile.currentCondition.isCurrentHealthCondition" (change)="changeCurrentHealth()">Do you currently have any medical situation?</mat-slide-toggle>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row" *ngIf="profileDetails.healthProfile.currentCondition.isCurrentHealthCondition">
+                <div class="col-md-12">
+                  <div class="alert alert-info alert-dismissible fade show">
+                    <strong>Info!</strong> Please select all the medical conditions!
+                  </div>
+                </div>
+                </div>
+
+              <br/>
+
+
+              <div class="row" *ngIf="profileDetails.healthProfile.currentCondition.isCurrentHealthCondition">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <mat-form-field>
+                      <mat-select placeholder="Please Select" [(ngModel)]="profileDetails.healthProfile.currentCondition.currentMedicalConditions" name="issueList" required multiple>
+                        <mat-option *ngFor="let item of issueList" [value]="item">{{item}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+      
+                  </div>
+                </div>
+
+    
+              </div>
+
+
+
+
+
+              <div class="form-group d-flex flex-wrap justify-content-between align-items-center">
+                <button id="pt_save_user_profile" (click)="submit('CONDITION')" [ngClass]="{
+            'spinner spinner-right spinner-md spinner-light': loading_current
+          }" class="btn btn-danger font-weight-bold px-9 py-4 my-3">
+                  Save
+                </button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+

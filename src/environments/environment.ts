@@ -2,10 +2,10 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-const url = 'http://localhost:5000';
 export const environment = {
   production: false,
-  serviceUrl: url,
+  isMockEnabled: false, // You have to switch this, when your real back-end is done
+  authTokenKey: 'authce9d77b308c149d5992a80073637e4d5'
 };
 
 /*

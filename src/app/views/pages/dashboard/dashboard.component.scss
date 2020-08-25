@@ -1,0 +1,69 @@
+:host {
+	::ng-deep {
+		ngb-tabset > .nav-tabs {
+			display: none;
+		}
+	}
+}
+
+.timeline-slider{
+/*    margin-left:10% !important;*/
+}
+
+
+.timeline-slider .mat-slider-horizontal {
+  min-width: 30% !important;
+}
+
+
+.dash-action-container{
+    text-align:center;
+}
+
+.dash-action-container i {
+ font-size:33px;
+}
+
+.action-heart-rate{
+    color:red;
+}
+
+.action-blood-pressure {
+  color: #1bc5bd;
+}
+
+.action-glucose{
+  color: green;
+}
+
+.dash-action-label {
+  font-size: 15px;
+  color: black;
+  text-align: center;
+}
+
+
+.dash-action-icon {
+  /*    margin-top:25%;*/
+  font-size: 38px;
+  text-align:center;
+}
+
+.dash-action-icon i, .dash-action-icon img {
+  /*    margin-top:25%;*/
+  font-size: 38px;
+  height: 38px;
+  width: 38px;
+  text-align: center;
+  display: block;
+  margin: auto;
+}
+
+.dash-action-container{
+    
+    margin-top:10px;
+    margin-bottom:25px;
+}
+
+
+

@@ -1,0 +1,36 @@
+<div class="card card-custom bg-white bd-round " >
+  <div class="card-header align-items-center border-0 mt-4">
+  <h3 class="card-title align-items-start flex-column">
+    <span class="font-weight-bolder text-dark">{{chartTitle}}</span>
+    <div><span class="text-muted mt-3 font-weight-bold font-size-sm">{{chartSubHeader}}</span></div>
+    </h3>
+  <div class="card-toolbar">
+    <div class="dropdown-inline dropdown" ngbdropdown="" title="Quick actions">
+    <a aria-expanded="false" aria-haspopup="true" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon dropdown-toggle" data-toggle="dropdown" ngbdropdowntoggle=""><i class="ki ki-bold-more-ver"></i></a>
+    <div class="dropdown-menu dropdown-menu-md dropdown-menu-right" ngbdropdownmenu="" x-placement="bottom-right">
+      <kt-dropdown1>
+      <ul class="navi navi-hover">
+      <li class="navi-header font-weight-bold py-5"><span class="font-size-lg">Choose Label:</span><i class="flaticon2-information icon-md text-muted" data-placement="right" data-toggle="tooltip" title="Click to learn more..."></i></li>
+      <li class="navi-separator mb-3 opacity-70"></li>
+      <li class="navi-item"><a class="navi-link" href="#"><span class="navi-text"><span class="label label-xl label-inline label-light-success">Customer</span></span></a></li>
+      <li class="navi-item"><a class="navi-link" href="#"><span class="navi-text"><span class="label label-xl label-inline label-light-danger">Partner</span></span></a></li>
+      <li class="navi-item"><a class="navi-link" href="#"><span class="navi-text"><span class="label label-xl label-inline label-light-warning">Supplier</span></span></a></li>
+      <li class="navi-item"><a class="navi-link" href="#"><span class="navi-text"><span class="label label-xl label-inline label-light-primary">Member</span></span></a></li><li class="navi-item"><a class="navi-link" href="#"><span class="navi-text"><span class="label label-xl label-inline label-light-dark">Staff</span></span></a></li>
+      <li class="navi-separator mt-3 opacity-70"></li>
+      <li class="navi-footer pt-5 pb-4"><a class="btn btn-clean font-weight-bold btn-sm" href="#"><i class="ki ki-plus icon-sm"></i> Add new </a></li>
+        </ul></kt-dropdown1>
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body p-0 m-3">
+
+    <!--begin::Chart-->
+    <div id="d3-bar-chart" class="card-rounded-bottom" >
+      <div  id="bar_{{chartid}}" [style.height]="'350px'"></div>
+
+    </div>
+    <!--end::Chart-->
+    <!--end::Stats-->
+  </div>
+</div>

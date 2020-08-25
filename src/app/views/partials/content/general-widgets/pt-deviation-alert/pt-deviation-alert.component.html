@@ -1,0 +1,92 @@
+<div class="card card-custom" [ngClass]="cssClasses">
+  <!-- Header -->
+  <div class="card-header border-0 pt-5">
+    <h3 class="card-title align-items-start flex-column">
+      <span class="card-label font-weight-bolder text-primary">Deviation Alerts</span>
+      <span class="text-muted mt-3 font-weight-bold font-size-sm">Alerts for anamolies</span>
+    </h3>
+    <div class="card-toolbar text-hover-primary link-hover">
+      <i class="flaticon2-expand " data-placement="right" (click)="toggleFullWidth()"  ></i>
+    </div>
+
+    <!--<div class="card-toolbar">
+    <ul class="nav nav-pills nav-pills-sm nav-dark-75">
+      <li class="nav-item" (click)="setCurrentTab('Month')" [style.cursor]="'pointer'">
+        <a class="nav-link py-2 px-4" [class.active]="currentTab === 'Month'" data-toggle="tab">Month</a>
+      </li>
+      <li class="nav-item" (click)="setCurrentTab('Week')" [style.cursor]="'pointer'">
+        <a class="nav-link py-2 px-4" [class.active]="currentTab === 'Week'" data-toggle="tab">Week</a>
+      </li>
+      <li class="nav-item" (click)="setCurrentTab('Day')" [style.cursor]="'pointer'">
+        <a class="nav-link py-2 px-4" [class.active]="currentTab === 'Day'" data-toggle="tab">Day</a>
+      </li>
+    </ul>
+  </div>-->
+  </div>
+  <!-- Body -->
+  <div class="card-body pt-3 pb-0 ">
+    <div class="scroll" style="position: relative;  max-height: 400px;">
+      <!--begin::Table-->
+      <div class="table-responsive ">
+        <table class="table  table-vertical-center">
+          <thead>
+            <tr>
+              <th class="p-0" [style.min-width]="'150px'">Biomarker</th>
+              <th class="p-0" [style.min-width]="'60px'">Date</th>
+              <th class="p-0" [style.min-width]="'50px'">CT</th>
+              <th class="p-0" [style.min-width]="'50px'">Indicator</th>
+              <!--<th class="p-0" [style.min-width]="'70px'"></th>-->
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr *ngFor="let item of deviationList">
+              <td class="pl-0">
+                <span class="symbol symbol-50 symbol-light mr-1">
+                  <span class="symbol-label">
+                    <i [ngClass]="{'flaticon-time-1 text-danger': item.biocategory  == 'Blood Pressure','flaticon2-shelter text-success': item.biocategory  == 'Glucose'}" class=" table-icon h-50 align-self-center "></i>
+                  </span>
+
+                </span>
+                <span class="text-dark-75 font-weight-bolder  font-size-lg">
+                  {{item.biocategory}}
+                </span>
+
+              </td>
+
+              <td class="pl-0 py-4">
+                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+                  {{item.date}}
+                </span>
+                <span class="text-muted font-weight-bold">
+                  {{item.time}}
+                </span>
+              </td>
+
+              <td class="text-left">
+                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+                  {{item.clinicalThresholdValue}}
+                </span>
+              </td>
+              <td class="text-left">
+                <span class=" text-dark-75 font-weight-bolder d-block font-size-lg ">
+                  {{item.currentReading}}
+                  <mat-icon *ngIf="item.clinicalDeviationIndication == 'low'" class=" text-success">arrow_upward</mat-icon>
+                  <mat-icon *ngIf="item.clinicalDeviationIndication  != 'low'" class="text-danger ">arrow_downward</mat-icon>
+                </span>
+              </td>
+              <!--<td class="text-right pr-0">
+            <a href="#" class="btn btn-icon btn-light btn-sm">
+              <span [inlineSVG]="'./assets/media/svg/icons/General/Settings-1.svg'"
+                    class="svg-icon svg-icon-md svg-icon-primary"></span>
+            </a>
+          </td>-->
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <!--end::Table-->
+      </div>
+  </div>
+</div>

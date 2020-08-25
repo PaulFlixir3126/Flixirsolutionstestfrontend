@@ -1,0 +1,152 @@
+
+<div class="row  mb-4">
+
+  <div class="col-md-12 bg-white bd-round">
+   
+  </div>
+
+</div>
+
+<div class="container-card bg-white bd-round m-2">
+  <div class="row  m-3" style=" display: flex; align-items: center;">
+    
+    <div class="col-md-12 col-xl-9 col-lg-10 col-12 mr-4 ml-4">
+
+      <div class=" timeline-slider">
+
+        <mat-slider (change)="changeSlider()" name="timelineValue" [(ngModel)]="timelineValue" thumbLabel="true" min="0" max="30" step="1"></mat-slider>
+        <span class="text-dark-75  slider-active ml-2 pr-2  font-weight-bold" >{{timelineString}}</span>
+        
+        <!--<span class="text-dark-75  slider-active ml-2 pr-2 bdr-black" [ngClass]="{'slider-active font-weight-bold':timelineValue == 0,'text-muted':timelineValue != 0}">Today</span>
+        <span class="text-dark-75   ml-2 pr-2 bdr-black" [ngClass]="{'slider-active font-weight-bold':timelineValue == 5,'text-muted':timelineValue != 5}">Yesterday</span>
+        <span class="text-dark-75  ml-2 pr-2 bdr-black" [ngClass]="{'slider-active font-weight-bold':timelineValue == 10,'text-muted':timelineValue != 10}">Week</span>
+        <span class="text-dark-75   ml-2 pr-2 bdr-black" [ngClass]="{'slider-active font-weight-bold':timelineValue == 15,'text-muted':timelineValue != 15}">Last 2 Weeks</span>
+        <span class="text-dark-75   ml-2 pr-2 bdr-black" [ngClass]="{'slider-active font-weight-bold':timelineValue == 20,'text-muted':timelineValue != 20}">Month to Date</span>
+        <span class="text-dark-75   ml-2 pr-2 " [ngClass]="{'slider-active font-weight-bold':timelineValue == 25,'text-muted':timelineValue != 25}">Year to Date</span>-->
+
+      </div>
+    </div>
+  </div>
+
+  <div class="card-spacer ">
+    <!--begin::Row-->
+    <div class="row m-0">
+      <div class="col-sm-12  home-detail-panel col-md bg-white bd-warning px-6 py-8 rounded-xl  mb-7" [ngClass]="{
+            'spinner spinner-center spinner-md spinner-primary': loading_bp
+          }">
+        <span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2 pb-2">
+          <img src="./assets/img/hypertension.png" class="home-stat-icon animate__animated animate__pulse animate__infinite">
+          <!--<i class="flaticon-time-1   home-stat-icon text-warning" data-placement="right" data-toggle="tooltip" title="Click to learn more..."></i>-->
+          <span class="home-stat-detail  float-right pos-relative">
+            {{bloodPressure.chartAverage}}  <span class="home-stat-detail-icon">
+              <mat-icon *ngIf="bloodPressure.chartIndicationHigh" [ngClass]="{'text-success': bloodPressure.chartLevelIndication == 'low' ,'text-danger': bloodPressure.chartLevelIndication == 'high' }" class=" ">arrow_upward</mat-icon>
+              <mat-icon *ngIf="!bloodPressure.chartIndicationHigh" [ngClass]="{'text-success': bloodPressure.chartLevelIndication == 'low' ,'text-danger': bloodPressure.chartLevelIndication == 'high' }" class=" ">arrow_downward</mat-icon>
+            </span>
+          </span>
+        </span>
+        <a href="#" class="text-warning font-weight-bold font-size-h6 mt-4">
+          Blood Pressure
+        </a>
+        <div class="text-muted font-size-sm">
+          Average calculated for {{timelineString}}
+        </div>
+      </div>
+      <div class="col-sm-12  col-md bg-white bd-primary px-6 py-8 rounded-xl home-detail-panel mb-7" [ngClass]="{
+            'spinner spinner-center spinner-md spinner-primary': loading_bw
+          }">
+        <span class="svg-icon svg-icon-3x svg-icon-primary d-block my-2 pb-2">
+          <!--<mat-icon class="home-stat-icon text-primary">accessibility</mat-icon>-->
+          <img src="./assets/img/weight.png" class="home-stat-icon animate__animated animate__pulse animate__infinite">
+          <span class="home-stat-detail  float-right pos-relative">
+            {{bodyWeight.chartAverage}}  <span class="home-stat-detail-icon">
+              <mat-icon *ngIf="bodyWeight.chartIndicationHigh" [ngClass]="{'text-success': bodyWeight.chartLevelIndication == 'low' ,'text-danger': bodyWeight.chartLevelIndication == 'high' }" class=" ">arrow_upward</mat-icon>
+              <mat-icon *ngIf="!bodyWeight.chartIndicationHigh" [ngClass]="{'text-success': bodyWeight.chartLevelIndication == 'low' ,'text-danger': bodyWeight.chartLevelIndication == 'high' }" class=" ">arrow_downward</mat-icon>
+            </span>
+          </span>
+        </span>
+
+        <a href="#" class="text-primary font-weight-bold font-size-h6 mt-3">
+          Body Weight
+        </a>
+        <div class="text-muted font-size-sm">
+          Average calculated for {{timelineString}}
+        </div>
+      </div>
+
+      <div class="col-sm-12  col-md bg-white bd-danger px-6 py-8 rounded-xl home-detail-panel mb-7" [ngClass]="{
+            'spinner spinner-center spinner-md spinner-primary': loading_hr
+          }">
+        <span class="svg-icon svg-icon-3x svg-icon-danger d-block my-2">
+          <img src="./assets/img/heart.png" class="home-stat-icon animate__animated animate__pulse animate__infinite">
+          <!--<i class="flaticon2-heart-rate-monitor   home-stat-icon text-danger" data-placement="right" data-toggle="tooltip" title="Click to learn more..."></i>-->
+          <span class="home-stat-detail  float-right pos-relative">
+            {{heartRate.chartAverage}}  <span class="home-stat-detail-icon">
+              <mat-icon *ngIf="heartRate.chartIndicationHigh" [ngClass]="{'text-success': heartRate.chartLevelIndication == 'low' ,'text-danger': heartRate.chartLevelIndication == 'high' }" class=" ">arrow_upward</mat-icon>
+              <mat-icon *ngIf="!heartRate.chartIndicationHigh" [ngClass]="{'text-success': heartRate.chartLevelIndication == 'low' ,'text-danger': heartRate.chartLevelIndication == 'high' }" class=" ">arrow_downward</mat-icon>
+            </span>
+          </span>
+        </span>
+        <a href="#" class="text-danger font-weight-bold font-size-h6 mt-2">
+          Heart Rate
+        </a>
+        <div class="text-muted font-size-sm">
+          Average calculated for {{timelineString}}
+        </div>
+      </div>
+      <div class="col-sm-12  col-md bg-white bd-success px-6 py-8 rounded-xl home-detail-panel mb-7" [ngClass]="{
+            'spinner spinner-center spinner-md spinner-primary': loading_gl
+          }">
+        <span class="svg-icon svg-icon-3x svg-icon-success d-block my-2">
+          <img src="./assets/img/checkup.png" class="home-stat-icon animate__animated animate__pulse animate__infinite">
+          <!--<i class="flaticon2-shelter   home-stat-icon text-success" data-placement="right" data-toggle="tooltip" title="Click to learn more..."></i>-->
+          <span class="home-stat-detail  float-right pos-relative">
+            {{glucoseDetails.chartAverage}}  <span class="home-stat-detail-icon">
+              <mat-icon *ngIf="glucoseDetails.chartIndicationHigh" [ngClass]="{'text-success': glucoseDetails.chartLevelIndication == 'low' ,'text-danger': glucoseDetails.chartLevelIndication == 'high' }" class=" ">arrow_upward</mat-icon>
+              <mat-icon *ngIf="!glucoseDetails.chartIndicationHigh" [ngClass]="{'text-success': glucoseDetails.chartLevelIndication == 'low' ,'text-danger': glucoseDetails.chartLevelIndication == 'high' }" class=" ">arrow_downward</mat-icon>
+            </span>
+          </span>
+        </span>
+        <a href="#" class="text-success font-weight-bold font-size-h6 mt-2">
+          Glucose
+        </a>
+        <div class="text-muted font-size-sm">
+          Average calculated for {{timelineString}}
+        </div>
+      </div>
+    </div>
+    <!--end::Row-->
+
+  </div>
+</div>
+<br />
+
+
+<div class="row">
+
+  <div class="mt-4" [ngClass]="{ 'col-md-12 ' : fullWidth,'col-md-6' : !fullWidth,
+            'spinner spinner-center spinner-md spinner-primary': loading_anamoly
+          }">
+    <pt-deviation-alert (fullWidthClicked)="deviationFullWidth($event)" [deviationList]="deviationList"></pt-deviation-alert>
+  </div>
+  <div class="col-md-6 mt-4" [ngClass]="{
+            'spinner spinner-center spinner-md spinner-primary': loading_activities
+          }">
+    <pt-user-activities [activityList]="activityList"></pt-user-activities>
+  </div>
+
+</div>
+<br />
+<br />
+<br />
+
+
+
+
+
+
+
+
+
+
+
+
