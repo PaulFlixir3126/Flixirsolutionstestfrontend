@@ -6,7 +6,7 @@ import { NgbDropdownModule, NgbTabsetModule, NgbTooltipModule, NgbButtonsModule 
 // Core Module
 import { CoreModule } from '../../../core/core.module';
 import { PartialsModule } from '../../partials/partials.module';
-import { HomeComponent } from '../home/ home.component';
+import { HomeComponent } from '../home/home.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
